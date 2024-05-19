@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>COLOR CHANGE</h1>
+    <button id="start">START</button>
+    <button id="stop">STOP</button>
+    <script>
+
+
+        // const changeColor = function(){
+        //     let randomColor = parseInt(Math.random() * 16777215).toString(16)
+        //     document.body.style.backgroundColor = '#' + randomColor
+        // }
+
+        // document.getElementById('start').addEventListener('click',()=>{
+        //     const stopChange = setInterval(changeColor,1000)
+        //     console.log("color change start");
+        //     document.getElementById('stop').addEventListener('click',()=>{
+        //         clearInterval(stopChange)
+        //         console.log("color change stop");
+        //     })
+        // })
+
+
+
+
+
+
+
+        const randomColor = function(){
+            const hex = '0123456789ABCDEF'
+            let color = '#'
+            for(let i=0;i<6;i++){
+                color += hex[Math.floor(Math.random() * 16)]
+            }
+            return color;
+        }
+
+        let intervalId;
+
+        const startChangingColor = function(){
+            function changeBgColor(){
+                document.body.style.backgroundColor = randomColor()
+            }
+            if(!intervalId){
+                intervalId = setInterval(changeBgColor,2000)
+            }
+        }
+        const stopChangingColor = function(){
+            clearInterval(intervalId)
+            intervalId = null
+        }
+
+        document.querySelector('#start').addEventListener('click',startChangingColor)
+        document.querySelector('#stop').addEventListener('click',stopChangingColor)
+    </script>
+</body>
+</html>
